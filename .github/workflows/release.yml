@@ -37,7 +37,7 @@ jobs:
           # Makes no sense to have an image with tag v0, hence the check in the last line.
           tags: |
             type=semver,pattern={{raw}}
-            type=semver,pattern={{raw}},enable=${{ contains(github.ref, '-snapshot')  }},value=latest-nightly
+            type=semver,pattern=latest-nightly,enable=${{ contains(github.ref, '-snapshot')  }}
             type=semver,pattern=v{{major}}.{{minor}},enable=${{ !contains(github.ref, '-snapshot') }}
             type=semver,pattern=v{{major}},enable=${{ !contains(github.ref, '-snapshot') && !startsWith(github.ref, 'refs/tags/v0.') }}
       - name: Build and push Docker image
